@@ -1,0 +1,10 @@
+{% extends 'mantenimiento/layout.html' %}
+
+{% block content %}
+    <h2>Ejecución del proceso de Actualización</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Guardar y continuar</button>
+    </form>
+{% endblock %}

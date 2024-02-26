@@ -1,0 +1,51 @@
+{% extends "mantenimiento/layout.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>Su cuenta no tiene acceso a esta página. Para continuar,
+    inicie sesión con una cuenta que tenga acceso.</p>
+{% else %}
+<p>Por favor inicie sesión para ver esta página.</p>
+{% endif %}
+{% endif %}
+
+<div class="row mt-3">
+    <div class="col text-center">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <!-- <div class="mb-3">
+                <label for="username" class="form-label">Nombre de usuario</label>
+                <input type="text" class="form-control" id="username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password">
+            </div> -->
+            <table>
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+            </table>
+            <input class="m-3 btn btn-dark" type="submit" value="Iniciar sesión">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+</div>
+
+
+
+{# Asume que configura la vista de restablecimiento de contraseña en su URLconf #}
+<!-- <p><a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a></p> -->
+
+{% endblock %}

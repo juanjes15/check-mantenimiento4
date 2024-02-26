@@ -1,0 +1,86 @@
+{% extends 'mantenimiento/layout.html' %}
+
+{% block content %}
+
+<header class="row">
+    <div class="col text-center">
+        <h1>CHECKLIST MANTENIMIENTO</h1>
+        <p>Aplicación para generar automaticamente el checklist al hacer un mantenimiento</p>
+    </div>
+</header>
+
+<div class="row">
+    <div class="col text-center mt-3 mb-5">
+        <h4>Buscador</h4>
+        <form action="{% url 'home' %}">
+            <input class="form-control" name="q" value="{{ request.GET.q }}" placeholder="Buscar por serial, nombre o ciudad">
+        </form>
+    </div>
+    <section id="results">
+        <div class="results">
+            {% for equipo in page.object_list %}
+            <div class="card my-2 bg-body-secondary">
+                <a class="text-decoration-none text-dark" href="{% url 'usuario' equipo.id %}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{equipo.serial}}</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{equipo.usuario.nombre}}</h6>
+                        <p class="card-text">{{equipo.usuario.ciudad}}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <nav class="mt-2 mb-5" aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page %}
+                {% if page.number != 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="?q={{ request.GET.q }}&page=1">
+                        &laquo; Primera
+                    </a>
+                </li>
+                {% endif %}
+                {% if page.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?q={{ request.GET.q }}&page={{ page.previous_page_number }}">
+                        {{ page.previous_page_number }}
+                    </a>
+                </li>
+                {% endif %}
+                <li class="page-item">
+                    <span class="page-link">
+                        {{ page.number }}
+                    </span>
+                </li>
+                {% if page.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?q={{ request.GET.q }}&page={{ page.next_page_number }}">
+                        {{ page.next_page_number }}
+                    </a>
+                </li>
+                {% endif %}
+                {% if page.number != page.paginator.num_pages %}
+                <li class="page-item">
+                    <a class="page-link" href="?q={{ request.GET.q }}&page={{ page.paginator.num_pages }}">
+                        &raquo; Ultima
+                    </a>
+                </li>
+                {% endif %}
+                {% endif %}
+            </ul>
+        </nav>
+    </section>
+</div>
+
+<div class="row">
+    <div class="col text-center">
+        <h6>¿No encuentras nada? Puedes importar tu Base de Datos desde un archivo Excel</h6>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input class="form-control" type="file" name="excel_file">
+            <button class="btn btn-success my-3" type="submit">Importar</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
