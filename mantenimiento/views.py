@@ -368,7 +368,7 @@ def revision(request, pk):
 
 def dibujarusuario(usuario):
     current_dir = os.getcwd()
-    pdf_path = os.path.join(current_dir, "checklist.pdf")
+    pdf_path = os.path.join(current_dir, "checkmantenimiento.pythonanywhere.com/checklist.pdf")
 
     def new_content():
         pdf = FPDF()
@@ -407,7 +407,7 @@ def dibujarusuario(usuario):
 
 def dibujarequipo(equipo):
     current_dir = os.getcwd()
-    pdf_path = os.path.join(current_dir, "checklist-final.pdf")
+    pdf_path = os.path.join(current_dir, "checkmantenimiento.pythonanywhere.com/checklist-final.pdf")
 
     def new_content():
         pdf = FPDF()
@@ -472,7 +472,7 @@ def dibujarequipo(equipo):
 
 def dibujarsoftware(software):
     current_dir = os.getcwd()
-    pdf_path = os.path.join(current_dir, "checklist-final.pdf")
+    pdf_path = os.path.join(current_dir, "checkmantenimiento.pythonanywhere.com/checklist-final.pdf")
 
     def new_content():
         pdf = FPDF()
@@ -553,7 +553,7 @@ def dibujarsoftware(software):
 
 def dibujardriver(driver):
     current_dir = os.getcwd()
-    pdf_path = os.path.join(current_dir, "checklist-final.pdf")
+    pdf_path = os.path.join(current_dir, "checkmantenimiento.pythonanywhere.com/checklist-final.pdf")
 
     def new_content():
         pdf = FPDF()
@@ -671,7 +671,7 @@ def dibujardriver(driver):
 
 def dibujarrevision(revision):
     current_dir = os.getcwd()
-    pdf_path = os.path.join(current_dir, "checklist-final.pdf")
+    pdf_path = os.path.join(current_dir, "checkmantenimiento.pythonanywhere.com/checklist-final.pdf")
 
     def new_content():
         pdf = FPDF()
