@@ -1,10 +1,36 @@
 {% extends 'mantenimiento/layout.html' %}
 
 {% block content %}
-    <h2>Revisión Dispositivos y aplicativos después de la instalación</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="btn btn-primary">Guardar y finalizar</button>
-    </form>
+
+<div class="row justify-content-center">
+    <div class="col-10 col-lg-6 mt-3 bg-body-tertiary rounded p-4">
+        <h2 class="h2">Revisión Dispositivos y aplicativos después de la instalación</h2>
+        {% if error_img %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_img }}
+            </div>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar y finalizar</button>
+        </form>
+    </div>
+    <div class="col-10 col-lg-6 mt-3 bg-body-secondary rounded p-4">
+        <h4 class="h4">Fotos de salida subidas</h4>
+        <h6 class="h6 mt-3">Foto de salida - Frente:</h6>
+        <img class="img-fluid" src="{{ revision.photo_out_front }}" alt="frente">
+        <h6 class="h6 mt-4">Foto de salida - Detrás:</h6>
+        <img class="img-fluid" src="{{ revision.photo_out_back }}" alt="detras">
+        <h6 class="h6 mt-4">Foto de salida - Derecha 1:</h6>
+        <img class="img-fluid" src="{{ revision.photo_out_right1 }}" alt="derecha1">
+        <h6 class="h6 mt-4">Foto de salida - Derecha 2:</h6>
+        <img class="img-fluid" src="{{ revision.photo_out_right2 }}" alt="derecha2">
+        <h6 class="h6 mt-4">Foto de salida - Izquierda 1:</h6>
+        <img class="img-fluid" src="{{ revision.photo_out_left1 }}" alt="izquierda1">
+        <h6 class="h6 mt-4">Foto de salida - Izquierda 2:</h6>
+        <img class="img-fluid" src="{{ revision.photo_out_left2 }}" alt="izquierda2">
+    </div>
+</div>
+
 {% endblock %}

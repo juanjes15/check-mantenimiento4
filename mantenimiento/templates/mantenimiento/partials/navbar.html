@@ -1,20 +1,22 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <img src="https://openclipart.org/image/800px/232064" alt="Bootstrap" width="30" height="24">
-        <span class="navbar-brand mb-0 h1">Casa Luker</span>
+        <a class="text-decoration-none" href="{% url 'home' %}">
+            <img src="https://chocolukeria.com/wp-content/uploads/2022/04/CASALUKER-01-px-1.png" alt="CasaLuker"
+                width="45" height="35">
+            <span class="navbar-brand mb-0 h1 text-danger">CheckList Mantenimiento</span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
-                <a class="nav-link navbar-brand" href="{% url 'home' %}">Inicio</a>
                 {% if user.is_authenticated %}
-                <span class="navbar-brand text-body-tertiary">{{ user.get_username }}</span>
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button class="btn btn-dark" type="submit">Cerrar sesión</button>
-                </form>
+                    <span class="navbar-brand text-body-tertiary">{{ user.get_username }}</span>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-dark" type="submit">Cerrar sesión</button>
+                    </form>
                 {% endif %}
             </div>
         </div>

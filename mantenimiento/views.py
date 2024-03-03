@@ -1,4 +1,4 @@
-import os, io, django
+import os, io, django, tempfile
 from django.http import HttpResponse
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
@@ -9,12 +9,15 @@ from .forms import EquipoForm, UsuarioForm, SoftwareForm, DriverForm, RevisionFo
 from fpdf import FPDF
 from pypdf import PdfReader, PdfWriter
 from openpyxl import load_workbook
+from imagekitio import ImageKit
+from imagekitio.models.UploadFileRequestOptions import UploadFileRequestOptions
 
 
 @login_required
 def home(request):
     search = request.GET.get("q")
     page_num = request.GET.get("page", 1)
+    cont = err = 0
 
     if search:
         equipos = Equipo.objects.filter(
@@ -43,6 +46,7 @@ def home(request):
                     equipo = Equipo.objects.create(
                         tipo=TIPO_EQUIPO, marca=MARCA, modelo=MODELO, serial=SERIAL
                     )
+                    cont += 1
                     Usuario.objects.create(
                         nombre=USUARIO, ciudad=CIUDAD, activo=ACTIVO, equipo=equipo
                     )
@@ -50,10 +54,13 @@ def home(request):
                     print(
                         f"El equipo con serial {SERIAL} ya existe en la base de datos."
                     )
+                    err += 1
         wb.close()
-        # return render(request, "import_success.html")
+        # return render(request, "mantenimiento/home.html", context={"page": page})
     return render(
-        request=request, template_name="mantenimiento/home.html", context={"page": page}
+        request=request,
+        template_name="mantenimiento/home.html",
+        context={"page": page, "cont": cont, "err": err},
     )
 
 
@@ -75,15 +82,129 @@ def usuario(request, pk):
 @login_required
 def equipo(request, pk):
     equipo = get_object_or_404(Equipo, pk=pk)
+    context = {}
+    error_img = "Faltan las siguientes fotos: "
     if request.method == "POST":
-        form = EquipoForm(request.POST, instance=equipo)
+        form = EquipoForm(request.POST, request.FILES, instance=equipo)
         if form.is_valid():
+            equipo = form.save(commit=False)
+            # Subir imagenes
+            front = request.FILES.get("input_in_front")
+            back = request.FILES.get("input_in_back")
+            right1 = request.FILES.get("input_in_right1")
+            right2 = request.FILES.get("input_in_right2")
+            left1 = request.FILES.get("input_in_left1")
+            left2 = request.FILES.get("input_in_left2")
+            if front or back or right1 or right2 or left1 or left2:
+                imagekit = ImageKit(
+                    private_key="private_OHsLbCwevXZ2QFire+/gMW/aYDw=",
+                    public_key="public_D+CaTZDjs6N/SGKOuhU9pJc4c0M=",
+                    url_endpoint="https://ik.imagekit.io/checkmantenimiento/",
+                )
+                # Foto Entrada - Frente
+                if front:
+                    file_extension = front.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in front.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_in_front.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    equipo.photo_in_front = result.url
+                # Foto Entrada - Detras
+                if back:
+                    file_extension = back.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in back.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_in_back.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    equipo.photo_in_back = result.url
+                # Foto Entrada - Derecha 1
+                if right1:
+                    file_extension = right1.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in right1.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_in_right1.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    equipo.photo_in_right1 = result.url
+                # Foto Entrada - Derecha 2
+                if right2:
+                    file_extension = right2.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in right2.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_in_right2.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    equipo.photo_in_right2 = result.url
+                # Foto Entrada - Izquierda 1
+                if left1:
+                    file_extension = left1.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in left1.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_in_left1.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    equipo.photo_in_left1 = result.url
+                # Foto Entrada - Izquierda 2
+                if left2:
+                    file_extension = left2.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in left2.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_in_left2.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    equipo.photo_in_left2 = result.url
             equipo.save()
-            dibujarequipo(equipo)
-            return redirect("software", pk=pk)
+            context["equipo"] = equipo
+            context["form"] = form
+            if not equipo.photo_in_front:
+                error_img = error_img + "frente, "
+            if not equipo.photo_in_back:
+                error_img = error_img + "detras, "
+            if not equipo.photo_in_right1:
+                error_img = error_img + "derecha 1, "
+            if not equipo.photo_in_right2:
+                error_img = error_img + "derecha 2, "
+            if not equipo.photo_in_left1:
+                error_img = error_img + "izquierda 1, "
+            if not equipo.photo_in_left2:
+                error_img = error_img + "izquierda 2, "
+            if len(error_img) > 29:
+                error_img = error_img[:-2]
+                context["error_img"] = error_img
+            else:
+                dibujarequipo(equipo)
+                return redirect("software", pk=pk)
     else:
         form = EquipoForm(instance=equipo)
-    return render(request, "mantenimiento/equipo.html", {"form": form})
+        context["equipo"] = equipo
+        context["form"] = form
+    return render(request, "mantenimiento/equipo.html", context=context)
 
 
 @login_required
@@ -120,16 +241,129 @@ def driver(request, pk):
 def revision(request, pk):
     equipo = get_object_or_404(Equipo, pk=pk)
     revision, created = Revision.objects.get_or_create(equipo=equipo)
+    context = {}
+    error_img = "Faltan las siguientes fotos: "
     if request.method == "POST":
         form = RevisionForm(request.POST, instance=revision)
         if form.is_valid():
+            revision = form.save(commit=False)
+            # Subir imagenes
+            front = request.FILES.get("input_out_front")
+            back = request.FILES.get("input_out_back")
+            right1 = request.FILES.get("input_out_right1")
+            right2 = request.FILES.get("input_out_right2")
+            left1 = request.FILES.get("input_out_left1")
+            left2 = request.FILES.get("input_out_left2")
+            if front or back or right1 or right2 or left1 or left2:
+                imagekit = ImageKit(
+                    private_key="private_OHsLbCwevXZ2QFire+/gMW/aYDw=",
+                    public_key="public_D+CaTZDjs6N/SGKOuhU9pJc4c0M=",
+                    url_endpoint="https://ik.imagekit.io/checkmantenimiento/",
+                )
+                # Foto Salida - Frente
+                if front:
+                    file_extension = front.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in front.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_out_front.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    revision.photo_out_front = result.url
+                # Foto Salida - Detras
+                if back:
+                    file_extension = back.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in back.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_out_back.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    revision.photo_out_back = result.url
+                # Foto Salida - Derecha 1
+                if right1:
+                    file_extension = right1.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in right1.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_out_right1.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    revision.photo_out_right1 = result.url
+                # Foto Salida - Derecha 2
+                if right2:
+                    file_extension = right2.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in right2.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_out_right2.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    revision.photo_out_right2 = result.url
+                # Foto Salida - Izquierda 1
+                if left1:
+                    file_extension = left1.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in left1.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_out_left1.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    revision.photo_out_left1 = result.url
+                # Foto Salida - Izquierda 2
+                if left2:
+                    file_extension = left2.name.split(".")[-1]
+                    temp_file = tempfile.NamedTemporaryFile(delete=False)
+                    for chunk in left2.chunks():
+                        temp_file.write(chunk)
+                    temp_file.close()
+                    result = imagekit.upload_file(
+                        file=open(temp_file.name, "rb"),
+                        file_name=f"{equipo.serial}_out_left2.{file_extension}",
+                        options=UploadFileRequestOptions(folder=f"/{equipo.serial}/"),
+                    )
+                    revision.photo_out_left2 = result.url
             revision.save()
-            response = dibujarrevision(revision)
-            # return redirect("home", )
-            return response
+            context["revision"] = revision
+            context["form"] = form
+            if not revision.photo_out_front:
+                error_img = error_img + "frente, "
+            if not revision.photo_out_back:
+                error_img = error_img + "detras, "
+            if not revision.photo_out_right1:
+                error_img = error_img + "derecha 1, "
+            if not revision.photo_out_right2:
+                error_img = error_img + "derecha 2, "
+            if not revision.photo_out_left1:
+                error_img = error_img + "izquierda 1, "
+            if not revision.photo_out_left2:
+                error_img = error_img + "izquierda 2, "
+            if len(error_img) > 29:
+                error_img = error_img[:-2]
+                context["error_img"] = error_img
+            else:
+                response = dibujarrevision(revision)
+                return response
     else:
         form = RevisionForm(instance=revision)
-    return render(request, "mantenimiento/revision.html", {"form": form})
+        context["revision"] = revision
+        context["form"] = form
+    return render(request, "mantenimiento/revision.html", context=context)
 
 
 def dibujarusuario(usuario):
@@ -199,6 +433,8 @@ def dibujarequipo(equipo):
         else:
             pdf.x = 82
         pdf.cell(15, 10, "X", align="C")
+        pdf.set_xy(137, y_pos)
+        pdf.cell(25.3, 10.5, "6", align="C")
 
         pdf.set_font_size(6)
         y_pos = y_pos + 9.8
@@ -525,6 +761,10 @@ def dibujarrevision(revision):
         y_pos = y_pos + 9.7
         pdf.set_xy(16.2, y_pos)
         pdf.multi_cell(191, 2.7, revision.observaciones, align="L")
+
+        pdf.set_font_size(16)
+        pdf.set_xy(181.2, 63.2)
+        pdf.cell(25.3, 10.5, "6", align="C")
 
         return io.BytesIO(pdf.output())
 
