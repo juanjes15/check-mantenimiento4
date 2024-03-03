@@ -395,6 +395,12 @@ def dibujarusuario(usuario):
         pdf.cell(45, 3, usuario.activo)
 
         return io.BytesIO(pdf.output())
+    
+        """ # Creamos un archivo temporal para escribir el PDF
+        temp_file = tempfile.NamedTemporaryFile(delete=False)
+        pdf.output(temp_file.name)
+        temp_file.seek(0)
+        return temp_file """
 
     reader = PdfReader(pdf_path)
     page_overlay = PdfReader(new_content()).pages[0]
