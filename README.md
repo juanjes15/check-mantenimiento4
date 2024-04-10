@@ -14,3 +14,6 @@ Aplicación web que busca mejorar e innovar el proceso actual de mantenimiento d
 **Front-end:** Django 5.0.2, Bootstrap 5.3.2, HTML 5
 
 **Back-end:** Django 5.0.2, Python 3, SQLite, ImagekitIO API
+## Deployment
+
+http://checkmantenimiento.pythonanywhere.com/
