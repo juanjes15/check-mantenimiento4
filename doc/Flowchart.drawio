@@ -1,0 +1,143 @@
+<mxfile host="app.diagrams.net" modified="2024-02-05T20:03:47.676Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="qTRm5kuY8UuHhphwTvja" version="23.1.1" type="device">
+  <diagram name="Página-1" id="RGGi7q_CXlAxoLxi9F5-">
+    <mxGraphModel dx="1434" dy="866" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-1" target="QLvzASzCgVIpmL7PUgPi-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-1" value="Inicio" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-3" target="QLvzASzCgVIpmL7PUgPi-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-3" value="Login" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=11;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-4" target="QLvzASzCgVIpmL7PUgPi-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="239.9999999999999" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="140" y="240" />
+              <mxPoint x="140" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-9" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="QLvzASzCgVIpmL7PUgPi-8">
+          <mxGeometry x="-0.8947" y="1" relative="1" as="geometry">
+            <mxPoint x="-2" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-4" target="QLvzASzCgVIpmL7PUgPi-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-12" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="QLvzASzCgVIpmL7PUgPi-11">
+          <mxGeometry x="-0.6071" y="-1" relative="1" as="geometry">
+            <mxPoint x="8" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-4" target="QLvzASzCgVIpmL7PUgPi-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-4" value="¿Login&lt;br style=&quot;font-size: 11px;&quot;&gt;exitoso?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="200" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-10" target="QLvzASzCgVIpmL7PUgPi-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-10" target="QLvzASzCgVIpmL7PUgPi-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-10" value="Home" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=11;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-14" target="QLvzASzCgVIpmL7PUgPi-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-21" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="QLvzASzCgVIpmL7PUgPi-17">
+          <mxGeometry x="-0.7167" relative="1" as="geometry">
+            <mxPoint x="7" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-14" target="QLvzASzCgVIpmL7PUgPi-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-22" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="QLvzASzCgVIpmL7PUgPi-19">
+          <mxGeometry x="-0.6" y="2" relative="1" as="geometry">
+            <mxPoint x="-1" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-14" value="¿Encontró&lt;br style=&quot;font-size: 11px;&quot;&gt;serial?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-15" target="QLvzASzCgVIpmL7PUgPi-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-15" value="Formulario" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=11;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="520" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-18" target="QLvzASzCgVIpmL7PUgPi-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-18" value="Importar&lt;br style=&quot;font-size: 11px;&quot;&gt;BD Excel" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="160" y="420" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-23" target="QLvzASzCgVIpmL7PUgPi-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-31" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="QLvzASzCgVIpmL7PUgPi-26">
+          <mxGeometry x="-0.6917" relative="1" as="geometry">
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-23" target="QLvzASzCgVIpmL7PUgPi-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-30" value="Si" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" vertex="1" connectable="0" parent="QLvzASzCgVIpmL7PUgPi-29">
+          <mxGeometry x="-0.5778" relative="1" as="geometry">
+            <mxPoint x="7" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-23" value="¿Llenó todos&lt;br style=&quot;font-size: 11px;&quot;&gt;los campos?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-25" target="QLvzASzCgVIpmL7PUgPi-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-25" value="Popup &quot;Falta x campo(s)&quot;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="160" y="620" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-28" target="QLvzASzCgVIpmL7PUgPi-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-28" value="Popup &quot;Descargar Checklist&quot;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="720" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-32" value="Fin" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="800" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="QLvzASzCgVIpmL7PUgPi-34" target="QLvzASzCgVIpmL7PUgPi-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="330" />
+              <mxPoint x="200" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QLvzASzCgVIpmL7PUgPi-34" value="Exportar&lt;br&gt;BD Excel" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="280" y="320" width="80" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

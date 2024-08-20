@@ -1,0 +1,43 @@
+Casos de uso:
+- El usuario pueda acceder a un "modo lectura/vista", donde esté toda la información en una sola página, ademas de todas las fotos
+- El usuario pueda crear un equipo
+
+
+Opcional:
+- En caso de ser un siniestro (siniestro=True), permitir adjuntar el documento escaneado del siniestro
+- El usuario pueda exportar la base de datos a un archivo excel
+
+- Permitir importar datos de diferentes excel
+- Enviar correo con fotos y pdf
+- Eliminar imagenes antiguas
+- Dar la opción de "wipeout" o borrar todos los datos cuando se finalice el mantenimiento o se inicie uno nuevo (principalmente por las fotos)
+
+
+TODO:
+- Limitar carácteres en TODOS los campos para que no sobrepase la caja de texto
+- Hacer validaciones de TODOS los campos ingresados en los formularios
+- Dibujar sólo al terminar (vista/función revisión)
+- Añadir favicon a la página (layout)
+- Procesar imágenes subidas (comprimir)
+
+
+URLField solo para almacenar la url final de imagekit
+ImageField para pedir los archivos y luego subirlos (temporales)
+URL endpoint: https://ik.imagekit.io/checkmantenimiento/
+private_key: private_OHsLbCwevXZ2QFire+/gMW/aYDw=
+public_key: public_D+CaTZDjs6N/SGKOuhU9pJc4c0M=
+
+PRODUCCIÓN:
+- Agregar a la url en las funciones de dibujo:
+  - Antes: '/home/checkMantenimiento/checklist.pdf'
+  - Después: '/home/checkMantenimiento/checkmantenimiento.pythonanywhere.com/checklist.pdf'
+
+
+Hecho:
+- El usuario pueda importar información básica de un archivo excel
+- El usuario acceda a información básica de los equipos/usuarios para el documento "Checklist Mantenimiento"
+- El usuario pueda llenar el documento "Checklist Mantenimiento"
+- El usuario guarde los progresos hechos en cualquier momento, y reanude cuando quiera
+- Al momento de subir las fotos a OneDrive o una BD, que en el documento salga el número de fotos cargado
+- El usuario guarde/haga fotos del equipo y almacenarlas en OneDrive o una BD
+- El usuario pueda descargar el documento completo, o guardarlo en OneDrive o la BD
